@@ -1,8 +1,12 @@
 /**
  * Created by Saahil on 10/29/2015.
+ *
+ * class to create a match
  */
+
 public class Match
 {
+    //'holds' two contestants and a result
     IContestant a;
     IContestant b;
 
@@ -14,10 +18,16 @@ public class Match
         this.b = c2;
         this.r = r1;
     }
-
+    // returns the winner of the match
     public IContestant winner()
     {
 
-        ;;return (r.winnerT1() ? a : b);
+        return (r.winnerT1() ? a : b);
+    }
+    // returns true if the underdog wins
+    boolean underdogWon ()
+    {
+        if(a.expectToBeat(b)) return b.equals(winner());
+        else return a.equals(winner());
     }
 }

@@ -1,34 +1,148 @@
 import tester.* ;
 class Examples {
-    Examples () {} ;
-    RugbyResult res = new RugbyResult(0,100);
-    RugbyTeam team1 = new RugbyTeam();
-    RugbyTeam team2 = new RugbyTeam();
 
-    Match m = new Match(team1,team2, res);
-    boolean testWinnerRug(Tester t)
+    /*
+   Rugby Tests tests
+     */
+
+    RugbyTeam USA = new RugbyTeam("USA", "Blue", false, 100 , 0);
+    RugbyTeam AU = new RugbyTeam ("AU", "Black", true, 0 , 100);
+    RugbyTeam CAN = new RugbyTeam("CAN", "Red", false, 0 ,100);
+    RugbyResult UvsAU = new RugbyResult(100, 0);
+    RugbyResult UvsCAN = new RugbyResult(100, 0);
+    Match USAvsAU = new Match (USA, AU, UvsAU);
+    Match USAvsCAN = new Match (USA, CAN, UvsCAN);
+
+    boolean testExpectToBeat1 (Tester t)
     {
-       return t.checkExpect(false, res.winnerT1());
+        return t.checkExpect(USA.expectToBeat(AU), false);
+    }
+    boolean testWinner1 (Tester t)
+    {
+        return t.checkExpect(USAvsAU.winner(), USA );
     }
 
-    boolean testWinnerMatchRug (Tester t)
+    boolean testWinner2 (Tester t)
     {
-        return t.checkExpect(team2, m.winner());
+        return t.checkExpect(USAvsCAN.winner(), USA);
     }
 
-    RoboticsResult resR = new RoboticsResult(0,0,false, 1, 1, true);
-    RoboticsTeam t1 = new RoboticsTeam();
-    RoboticsTeam t2 = new RoboticsTeam();
-    Match rm = new Match (t1, t2, resR);
-    boolean testWinnerResR(Tester t)
+    boolean testUnderDog1 (Tester t)
     {
-        return t.checkExpect(true ,  resR.winnerT1());
+        return t.checkExpect(USAvsAU.underdogWon(), true);
     }
 
-    boolean testWinnerRobotics(Tester t)
+    boolean testUnderDog2 (Tester t)
     {
-        return t.checkExpect(t1, rm.winner());
+        return t.checkExpect(USAvsCAN.underdogWon(), false);
     }
+
+    /*
+    robotics tests
+    */
+
+    RoboticsTeam WPI = new RoboticsTeam("WPI", "BIG ARM THING", 1);
+    RoboticsTeam RPI = new RoboticsTeam("RPI", "tiny arm", 3);
+    RoboticsTeam MIT = new RoboticsTeam("MIT", "HUGE ARM AND SMART PEOPLE", 2);
+    RoboticsResult WPIvsRPI = new RoboticsResult(10,10,true,0 , 0 ,false);
+    RoboticsResult WPIvsMIT = new RoboticsResult(0 ,0 ,false, 2,0,true);
+    Match WvR = new Match(WPI, RPI, WPIvsRPI);
+    Match WvM = new Match(WPI, MIT, WPIvsMIT);
+
+    boolean testRExpectToBeat1 (Tester t)
+    {
+        return t.checkExpect(WPI.expectToBeat(RPI), true);
+    }
+    boolean testRWinner1 (Tester t)
+    {
+        return t.checkExpect(WvR.winner(), WPI );
+    }
+
+    boolean testRWinner2 (Tester t)
+    {
+        return t.checkExpect(WvM.winner(), WPI);
+    }
+
+    boolean testRUnderDog1 (Tester t)
+    {
+        return t.checkExpect(WvR.underdogWon(), false);
+    }
+
+    boolean testRUnderDog2 (Tester t)
+    {
+        return t.checkExpect(WvM.underdogWon(), true);
+    }
+
+    // methods: expect to beat, winner, underdog won
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // TODO: DOUBLE CHECK THE test cases for expected to win!
+
+    RoboticsTeam team1 = new RoboticsTeam("ab", "arm", 4);
+    RoboticsTeam team2 = new RoboticsTeam("cd", "s", 2);
+    RoboticsResult rRes = new RoboticsResult (0,1,false, 0,0,true);
+    Match rM = new Match(team1, team2, rRes);
+
+    RugbyTeam teamA = new RugbyTeam("wales", "green", false, 10 , 10 );
+    RugbyTeam teamB = new RugbyTeam("UK", "Black", true, 0 , 10 );
+    RugbyResult bRes = new RugbyResult(10, 0);
+    Match bM = new Match(teamA, teamB, bRes);
+
+// test for winner robotics
+    boolean testrRes(Tester t)
+    {        return t.checkExpect(team1 , rM.winner());
+    }
+    // test for winner rugby
+    boolean testbRes(Tester t)
+    {
+        return t.checkExpect(teamA , bM.winner());
+
+    }
+    //tests for expexpectToBeat for rugby and robotics
+    boolean testExpectedR(Tester t)
+    {
+        return t.checkExpect(true , team1.expectToBeat(team2));
+    }
+    boolean testExpectedB(Tester t)
+    {
+        return t.checkExpect(false , teamA.expectToBeat(teamB));
+    }
+
+
+    // test for underdogWon() for rugby and robotics
+    boolean testUnderdogB(Tester t)
+    {
+        return t.checkExpect(true, bM.underdogWon());
+    }
+    boolean testUnderdogR(Tester t)
+    {
+        return t.checkExpect(false, rM.underdogWon());
+    }
+
+    //test for result.isValid() for rugby and robotics
+    boolean testisValidr(Tester t) {return t.checkExpect(true , rRes.isValid()); }
+    boolean testisValidb(Tester t) {return t.checkExpect(true , bRes.isValid()); }
+    boolean testisValidFr(Tester t) {return t.checkExpect(false , (new RoboticsResult(10,10,false,1000,10000,true)).isValid()); }
+    boolean testisValidFb(Tester t) {return t.checkExpect(false , (new RugbyResult(10000, 10000)).isValid()); }
+
+
+
+
 
     // checkFuntion
   /*

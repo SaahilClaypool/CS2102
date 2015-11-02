@@ -3,6 +3,7 @@
  */
 public class RugbyResult implements IResult
 {
+    // a rugby result is the score of two teams
     int team1points, team2points;
     RugbyResult(int team1points, int team2points) {
         this.team1points = team1points;
@@ -13,6 +14,7 @@ public class RugbyResult implements IResult
         return team1points < 150 && team2points < 150;
     }
 
+    // returns true if the first given team is the winner
     @Override
     public boolean winnerT1() {
         return team1points > team2points;

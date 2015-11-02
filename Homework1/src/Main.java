@@ -12,7 +12,7 @@ public class Main {
      These are not checking for correct answers beyond types.
      */
 
-      /*  // dummy variables for the outputs
+       // dummy variables for the outputs
         boolean boolResult;
         IContestant contResult;
 
@@ -39,10 +39,10 @@ public class Main {
         boolResult = ((IContestant) robotsTeamCheck).expectToBeat(robotsTeamCheck);
 
         // underdogWon
-        boolResult = rugbyMatchCheck.underdogWon();
-        boolResult = robotsMatchCheck.underdogWon();
+       boolResult = rugbyMatchCheck.underdogWon();
+       boolResult = robotsMatchCheck.underdogWon();
 
-        // Run the Examples class*/
+        // Run the Examples class
         Tester.run(E);
     }
 }

@@ -3,6 +3,7 @@
  */
 public class RoboticsResult implements IResult
 {
+    // robotics result is the points and taakss of each robot and a boolean for if each team fell
     int team1points, team1tasks,team2points, team2tasks;
     boolean team1fell, team2fell;
     RoboticsResult(int team1points, int team1tasks,
@@ -20,12 +21,13 @@ public class RoboticsResult implements IResult
         this.team2fell = team2fell;
 
     }
+    // determines if given scores are valid
     public boolean isValid()
     {
         return team1tasks < 8 && team1points < 16
             && team2tasks < 8 && team2points < 16;
     }
-
+    //determines if the first given team is the winner
     public boolean winnerT1()
     {
         int team1Score = team1points + team1tasks - (team1fell ? 5 : 0);

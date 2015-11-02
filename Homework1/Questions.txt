@@ -1,0 +1,5 @@
+1. Someone could place different sporting event teams together. A match does not specify the type of contestant or score
+2. This is allowed because Match uses generic interface "IContestant" and "IResult" do not specify that the classes need to be the same derived type.  
+3. This could be prevented by creating a more derived version of match for each
+event that uses different parameters. For example, a type "RugbyMatch" would only take in rugby teams and rugby
+results as parameters rather than the more generic IContestant and IResult.

@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="LinearEquations:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/LinearEquations_jar</output-path>
+    <root id="archive" name="LinearEquations.jar">
+      <element id="module-output" name="LinearEquations" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../tester-1.5.2.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
